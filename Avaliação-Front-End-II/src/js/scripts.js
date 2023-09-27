@@ -4,7 +4,6 @@ const prevPageBtn = document.getElementById('prev-page');
 const nextPageBtn = document.getElementById('next-page');
 
 let response;
-let Timeout;
 let currentPage = 1;
 let isLoading = false;
 let currentCharacterList = [];
@@ -66,7 +65,7 @@ async function loadCharacter(page = 1, name = '') {
             const characterInfo = document.createElement('div');
             characterInfo.className = 'character-info';
 
-            const characterName = document.createElement('h2');
+            const characterName = document.createElement('h4');
             characterName.textContent = character.name;
 
             if (character.status === 'Alive') {
@@ -79,13 +78,13 @@ async function loadCharacter(page = 1, name = '') {
 
             const statusSpan = document.createElement('span');
 
-            statusSpan.innerHTML = `<strong>  Status:</strong> ${character.status} <br>`;
+            statusSpan.innerHTML = `<br> <strong>  Status:  ${character.status}  </strong> <br>`;
 
             const locationSpan = document.createElement('span');
-            locationSpan.innerHTML = `<strong>  Localização:</strong> ${await getLocationInfo(character.location.url)} <br>`;
+            locationSpan.innerHTML = `<strong>  Localização: ${await getLocationInfo(character.location.url)} </strong> <br>`;
 
             const episodeSpan = document.createElement('span');
-            episodeSpan.innerHTML = `<strong>   Último Episódio:</strong> ${await getLatestEpisode(character.episode)}`;
+            episodeSpan.innerHTML = `<strong>   Último Episódio: ${await getLatestEpisode(character.episode)} </strong> <br>`;
 
             characterInfo.appendChild(characterName);
             characterInfo.appendChild(statusSpan);
@@ -108,33 +107,24 @@ async function loadCharacter(page = 1, name = '') {
     }
 }
 
-loadCharacter();
-
 searchCharByName.addEventListener('input', () => {
     currentPage = 1;
     loadCharacter(currentPage, searchCharByName.value);
-
-    clearTimeout(searchTimeout);
-    Timeout = setTimeout(() => {
-        currentPage = 1;
-        loadCharacter(currentPage, searchCharByName.value);
-    }, 10000);
 });
 
 
 prevPageBtn.addEventListener('click', () => {
     if (currentPage > 1 && !isLoading) {
-        setTimeout(() => {
             currentPage--;
-        loadCharacter(currentPage); 
-    })}
+        loadCharacter(currentPage);    
+    }
 });
 
 nextPageBtn.addEventListener('click', () => {
     if (currentPage < response.data.info.pages && !isLoading) {
-        setTimeout(() => {
             currentPage++;
         loadCharacter(currentPage);
-    })};
+    }
 });
 
+loadCharacter();
