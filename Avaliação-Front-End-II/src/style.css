@@ -51,7 +51,7 @@
 
 .character-card {
     background-color: rgba(0, 0, 0, 0.711);
-    border-radius: 8px;
+    border-radius: 5px;
     width: calc(25% - 20px);
     text-align: center;
     padding: 1rem;
@@ -61,23 +61,17 @@
     align-items: center;
     border: 2px solid black;
     position: relative;
+    margin-bottom: 10px;
     z-index: 1;
 }
 
 .character-image {
-    width: 90px;
+    width: 80px;
     margin-top: 10px;
     margin-bottom: 10px;
     height: auto;
     border-radius: 4px;
 }
-  
-  .characters-card h2 {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
 
   /* Botões */
 
@@ -130,29 +124,26 @@
 .status-dead::before,
 .status-unknown::before {
   content: '';
-  margin-top: 6px;
-  margin-bottom: 3px;
-  height: 5px; 
-  width: 11px; 
-  border-radius: 10%;
-  padding: 50px;
-  display: inline-block;
-  vertical-align:middle; 
+  border-radius: 1%;
+  border: 5px solid;
+  height: 230px;
+  width: 268px;
+  display: block;
   position: absolute;
-  left: 50%; 
-  top: 25%; 
-  transform: translate(-50%, -50%);
+  left: 0%;
+  bottom: 1px; 
   z-index: -1;
+  
 }
 
 .status-alive::before {
-  background-color: rgba(0, 128, 0, 0.726);
+  border-color: rgba(0, 128, 0, 0.726);
 }
 
 .status-dead::before {
-  background-color: rgba(255, 0, 0, 0.753);
+  border-color: rgba(255, 0, 0, 0.753);
 }
 
 .status-unknown::before {
-  background-color: grey;
+  border-color: grey;
 }
